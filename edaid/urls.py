@@ -21,5 +21,7 @@ from testmaker import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^printpdf/', views.print_pdf),
+    url(r'^qandc/', views.q_and_c),
+    url(r'^templatetest/', views.template_test),
 ]
 

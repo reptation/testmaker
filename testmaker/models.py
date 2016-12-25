@@ -7,7 +7,8 @@ class Question(models.Model):
 #    choices = models.ManyToManyField(Choice)
     def __str__(self):
         return self.text
-    def display_choices(self):
+#    def display_choices(self):
+#        pass 
 
 
 class Choice(models.Model):

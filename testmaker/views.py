@@ -1,9 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from reportlab.pdfgen import canvas
 from django.http import HttpResponse
 from io import BytesIO
-from .models import Question, Test, Choice
-
+from testmaker.models import Question, Test, Choice
 
 #for testing
 import datetime
@@ -24,4 +23,39 @@ def print_pdf(request):
     response.write(pdf)
     return response
 
+def q_and_c(request):
+    question = get_object_or_404(Question, pk=1)
+    #choices = question.choice_set.all()
+    #html = "<html><body>The question is %s.</body></html>" % question
+    #return HttpResponse(html)
+    return render(request, 'testmaker/q_and_c.html', {'question': question})
 
+#http://stackoverflow.com/questions/1377446/render-html-to-pdf-in-django-site
+import cStringIO as StringIO
+from xhtml2pdf import pisa
+from django.template.loader import get_template
+from django.template import Context
+from cgi import escape
+
+
+def render_to_pdf(template_src, context_dict):
+    template = get_template(template_src)
+    context = Context(context_dict)
+    html  = template.render(context)
+    result = StringIO.StringIO()
+
+    pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("ISO-8859-1")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type='application/pdf')
+    return HttpResponse('We had some errors<pre>%s</pre>' % escape(html))
+
+
+def template_test(request):
+    #Retrieve data or whatever you need
+    return render_to_pdf(
+            'testmaker/template_test.html',
+            {
+                'pagesize':'A4',
+#                'mylist': results,
+            }
+        )

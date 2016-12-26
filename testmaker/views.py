@@ -30,6 +30,14 @@ def q_and_c(request):
     #return HttpResponse(html)
     return render(request, 'testmaker/q_and_c.html', {'question': question})
 
+def t_and_q(request):
+    test = get_object_or_404(Test, pk=1)
+    questions = Question.objects.filter(test__id=1)
+    choices = Choice.objects.filter(question__in=questions)
+    return render(request, 'testmaker/t_and_q.html', {'test': test, 'questions': questions, 'choices': choices})   
+
+
+
 #http://stackoverflow.com/questions/1377446/render-html-to-pdf-in-django-site
 import cStringIO as StringIO
 from xhtml2pdf import pisa
@@ -59,3 +67,5 @@ def template_test(request):
 #                'mylist': results,
             }
         )
+
+

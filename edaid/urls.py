@@ -23,5 +23,5 @@ urlpatterns = [
     url(r'^printpdf/', views.print_pdf),
     url(r'^qandc/', views.q_and_c),
     url(r'^templatetest/', views.template_test),
+    url(r'^tandq/', views.t_and_q),
 ]
-

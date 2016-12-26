@@ -59,13 +59,18 @@ def render_to_pdf(template_src, context_dict):
 
 
 def template_test(request):
-    #Retrieve data or whatever you need
-    return render_to_pdf(
-            'testmaker/template_test.html',
-            {
-                'pagesize':'A4',
-#                'mylist': results,
-            }
-        )
+    test = get_object_or_404(Test, pk=1)
+    questions = Question.objects.filter(test__id=1)
+    choices = Choice.objects.filter(question__in=questions)
+    return render_to_pdf('testmaker/t_and_q.html', {'test': test, 'questions': questions, 'choices': choices, 'pagesize': 'A4'})   
+
+#    #Retrieve data or whatever you need
+#    return render_to_pdf(
+#            'testmaker/template_test.html',
+#            {
+#                'pagesize':'A4',
+##                'mylist': results,
+#            }
+#        )
 
 

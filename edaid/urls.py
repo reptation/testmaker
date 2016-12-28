@@ -22,7 +22,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^printpdf/', views.print_pdf),
     url(r'^qandc/', views.q_and_c),
-    url(r'^templatetest/([0-9]{4})/$', views.template_test),
+#    url(r'^templatetest/([0-9]{4})/$', views.template_test),
     url(r'^tandq/', views.t_and_q),
-    url(r'^templatetest/([0-9])+/$', views.template_test),
+    url(r'^templatetest/(?P<test_id>\w+)/$', views.template_test),
+#    url(r'^templatetest/([0-9]){1}/$', views.template_test),
 ]

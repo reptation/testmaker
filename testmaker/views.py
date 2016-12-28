@@ -58,9 +58,14 @@ def render_to_pdf(template_src, context_dict):
     return HttpResponse('We had some errors<pre>%s</pre>' % escape(html))
 
 
-def template_test(request, test_id):
-    test = get_object_or_404(Test, test_id)
-    questions = Question.objects.filter(test__id=1)
+#def template_test(request, test_id='2'):
+def template_test(request, test_id='2'):
+#    print ("function template test\n")
+#    print(test_id)
+    my_id = test_id[0]
+    print my_id
+    test = get_object_or_404(Test, id=my_id)
+    questions = Question.objects.filter(test__id=my_id)
     choices = Choice.objects.filter(question__in=questions)
     return render_to_pdf('testmaker/t_and_q.html', {'test': test, 'questions': questions, 'choices': choices, 'pagesize': 'A4'})   
 

@@ -1,3 +1,6 @@
+<html>
+<body>
+
 <h1>{{ test.date }}</h1>
 <h1>{{ test.instructor }}</h1>
 <h1>{{ test.class_name }}</h1>
@@ -5,17 +8,17 @@
 <!-- <h1>{{ questions }} </h1>
 <h1>{{ choices }} </h1> -->
 
-<ul>
+<ol>
 
 {% for record in questions %}
    <li>{{record.text}}</li>
 <ul>
     {% for choice in record.choice_set.all %}
-    <li>{{choice.text}}</li>
+    <li style="list-style-type:lower-alpha;">{{choice.text}}</li>
     {% endfor %}
 </ul>
 {% endfor %}
-</ul>
+</ol>
 <!--
 <h1>{{ question.text }}</h1>
 <ul>
@@ -30,3 +33,5 @@
     <li>{{ question.text }}</li>
 {% endfor %}
 </ul> --> 
+<body>
+</html>

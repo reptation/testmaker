@@ -1,1 +1,1 @@
-django custom admin action to export a multiple choice test to pdf
+The app's functionality is currently in the form of a django custom admin action which exports a multiple choice test to pdf. There are also fields for header information (constants, class name, etc.)
